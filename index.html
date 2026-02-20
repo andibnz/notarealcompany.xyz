@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Not a Real Company — Strategy. Synergy. Success. (Test Site)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Mulish:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── HERO ── */
+    #hero {
+      background: var(--navy);
+      padding: 6rem 5rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      border-bottom: 3px solid var(--accent);
+    }
+    .hero-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.6rem, 4.5vw, 4rem);
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .hero-body {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 2rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-outline {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      border: 1px solid rgba(255,255,255,0.25);
+      text-decoration: none;
+      padding: 0.8rem 1.8rem;
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.6); color: var(--white); }
+    .hero-stats {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-stat {
+      padding: 1.75rem 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-stat:last-child { border-bottom: none; }
+    .hero-stat .n {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 2.6rem;
+      color: var(--white);
+      line-height: 1;
+    }
+    .hero-stat .n sup { font-size: 1rem; color: var(--accent); }
+    .hero-stat .l { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; }
+    .hero-stat .p { font-size: 0.67rem; color: var(--accent); font-style: italic; margin-top: 0.2rem; opacity: 0.8; }
+
+    /* ── SERVICES (homepage) ── */
+    .services-hd {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-left: 1px solid var(--rule);
+    }
+    .service-card {
+      padding: 2.25rem;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.22s;
+    }
+    .service-card:hover { background: var(--off); }
+    .svc-num { font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 1.25rem; }
+    .service-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--navy); margin-bottom: 0.65rem; line-height: 1.3; }
+    .service-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.72; }
+    .svc-ph { font-size: 0.7rem; color: #b87333; font-style: italic; margin-top: 0.5rem; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 1rem; }
+    .tag { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue); background: #e8eef6; padding: 0.2rem 0.55rem; }
+    .tag-ph { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #92600a; background: #fef3c7; padding: 0.2rem 0.55rem; }
+
+    /* ── ABOUT (homepage) ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    .about-content p { font-size: 0.93rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.1rem; }
+    .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); margin-top: 2.5rem; border: 1px solid var(--rule); }
+    .team-card { background: var(--white); padding: 1.5rem; transition: background 0.2s; }
+    .team-card:hover { background: var(--off); }
+    .t-avatar { width: 40px; height: 40px; background: var(--rule); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; margin-bottom: 0.75rem; }
+    .t-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--navy); }
+    .t-role { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
+    .t-ph { font-size: 0.63rem; color: #b87333; font-style: italic; margin-top: 0.3rem; }
+    .values-col { display: flex; flex-direction: column; }
+    .value-item { padding: 1.6rem 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 2.5rem 1fr; gap: 1rem; align-items: start; }
+    .value-item:first-child { border-top: 1px solid var(--rule); }
+    .v-num { font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 800; color: var(--accent); letter-spacing: 0.08em; padding-top: 0.2rem; }
+    .v-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); margin-bottom: 0.35rem; }
+    .v-body { font-size: 0.84rem; color: var(--muted); line-height: 1.7; }
+
+    @media (max-width: 960px) {
+      #hero { grid-template-columns: 1fr; padding: 4rem 1.5rem 3rem; gap: 3rem; }
+      .services-hd { grid-template-columns: 1fr; gap: 1.25rem; }
+      .service-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Not a Real Company <span class="demo">Demo</span></a>
+    <ul class="nav-links">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="insights.html">Insights</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Contact Us</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div>
+      <div class="hero-label">Management &amp; Strategy Consulting</div>
+      <h1 class="hero-title">We Help Businesses Grow Strategically</h1>
+      <p class="hero-body">
+        Not a Real Company is a world-class management consulting firm that absolutely exists and has definitely helped real clients achieve measurable outcomes. Our consultants are real humans with real credentials who went to real universities. This is a real website.
+      </p>
+
+      <div class="hero-btns">
+        <a href="services.html" class="btn-solid">Our Services</a>
+        <a href="about.html" class="btn-outline">Meet the Team</a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="n">500<sup>+</sup></div>
+        <div class="l">Clients Served Worldwide</div>
+        <div class="p">← a round number we made sound impressive</div>
+      </div>
+      <div class="hero-stat">
+        <div class="n">$2.4<sup>B</sup></div>
+        <div class="l">Client Value Generated</div>
+        <div class="p">← we have no idea how we calculated this</div>
+      </div>
+      <div class="hero-stat">
+        <div class="n">18<sup>yrs</sup></div>
+        <div class="l">In Operation</div>
+        <div class="p">← fictitious, but a reassuringly long time</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <div class="section-wrap" id="services">
+    <div class="services-hd">
+      <div>
+        <div class="section-tag">What We Do</div>
+        <h2 class="section-title">Our Services</h2>
+      </div>
+      <p class="section-sub">
+        We offer six services, because six feels authoritative. Each one sounds slightly different from the others but essentially involves us sitting in your boardroom asking probing questions and charging by the hour.
+      </p>
+    </div>
+
+    <div class="service-grid">
+      <div class="service-card reveal">
+        <div class="svc-num">01 / 06</div>
+        <h3>Strategy &amp; Growth</h3>
+        <p>Corporate strategy, market entry, and growth planning for mid-market and enterprise clients seeking sustainable competitive positioning.</p>
+        <p class="svc-ph">← Placeholder service description</p>
+        <div class="tag-row">
+          <span class="tag">Market Analysis</span>
+          <span class="tag">Growth Planning</span>
+          <span class="tag-ph">Sample Tag</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:.07s">
+        <div class="svc-num">02 / 06</div>
+        <h3>Organisational Design</h3>
+        <p>Restructuring, workforce planning, and operating model transformations that align your people with strategic objectives.</p>
+        <p class="svc-ph">← Add real description here</p>
+        <div class="tag-row">
+          <span class="tag">Org Design</span>
+          <span class="tag">Change Mgmt</span>
+          <span class="tag-ph">Sample Tag</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:.14s">
+        <div class="svc-num">03 / 06</div>
+        <h3>Digital Transformation</h3>
+        <p>Technology adoption roadmaps, digital operating models, and AI integration strategies for organisations modernising at scale.</p>
+        <p class="svc-ph">← Replace with actual capability</p>
+        <div class="tag-row">
+          <span class="tag">AI Strategy</span>
+          <span class="tag">Tech Roadmap</span>
+          <span class="tag-ph">Sample Tag</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:.21s">
+        <div class="svc-num">04 / 06</div>
+        <h3>M&amp;A Advisory</h3>
+        <p>Due diligence, integration planning, and post-merger value realisation for transactions from bolt-on acquisitions to full mergers.</p>
+        <p class="svc-ph">← Placeholder service description</p>
+        <div class="tag-row">
+          <span class="tag">Due Diligence</span>
+          <span class="tag">Integration</span>
+          <span class="tag-ph">Sample Tag</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:.28s">
+        <div class="svc-num">05 / 06</div>
+        <h3>Financial Performance</h3>
+        <p>Cost optimisation, working capital improvement, and financial model design to improve margin and operational efficiency.</p>
+        <p class="svc-ph">← Add your real offering here</p>
+        <div class="tag-row">
+          <span class="tag">Cost Reduction</span>
+          <span class="tag">Modelling</span>
+          <span class="tag-ph">Sample Tag</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:.35s">
+        <div class="svc-num">06 / 06</div>
+        <h3>Risk &amp; Compliance</h3>
+        <p>Enterprise risk frameworks, regulatory readiness, and governance uplift programs for industries facing heightened scrutiny.</p>
+        <p class="svc-ph">← Placeholder — update with real content</p>
+        <div class="tag-row">
+          <span class="tag">Risk Mgmt</span>
+          <span class="tag">Governance</span>
+          <span class="tag-ph">Sample Tag</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENTS BAR -->
+  <div class="clients-bar">
+    <div class="clients-label">Trusted by</div>
+    <div class="client-divider"></div>
+    <div class="clients-list">
+      <div class="client-name">Globecorp<span>not real</span></div>
+      <div class="client-name">Nexigen<span>not real</span></div>
+      <div class="client-name">Stratolink<span>not real</span></div>
+      <div class="client-name">Veridian Co.<span>not real</span></div>
+      <div class="client-name">Orrion Group<span>not real</span></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section-wrap" id="about">
+    <div class="about-grid">
+      <div class="about-content">
+        <div class="section-tag">Who We Are</div>
+        <h2 class="section-title">A Firm Built on Expertise</h2>
+
+        <p>
+          Founded in 2007 by a group of former partners from prestigious firms we're legally unable to name (because those firms also don't exist), Not a Real Company has grown into a globally trusted practice with offices in four cities — none of which you can visit, because they're also made up.
+        </p>
+        <p>
+          Our consultants bring a rigorous, evidence-based approach to every engagement, underpinned by our proprietary methodology — the <em>Not a Real Framework™</em> — which took three fictional consultants eighteen imaginary months to develop and looks very impressive on a slide.
+        </p>
+        <p>
+          We are committed to honest advice and measurable outcomes, which is either ironic or the most honest thing on this website, depending on your perspective.
+        </p>
+
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="t-avatar">👤</div>
+            <div class="t-name">Jane Placeholder</div>
+            <div class="t-role">Managing Partner</div>
+            <div class="t-ph">← Replace with real name</div>
+          </div>
+          <div class="team-card">
+            <div class="t-avatar">👤</div>
+            <div class="t-name">John Testington</div>
+            <div class="t-role">Head of Strategy</div>
+            <div class="t-ph">← Replace with real name</div>
+          </div>
+          <div class="team-card">
+            <div class="t-avatar">👤</div>
+            <div class="t-name">A. Sample Person</div>
+            <div class="t-role">Principal Consultant</div>
+            <div class="t-ph">← Replace with real name</div>
+          </div>
+          <div class="team-card">
+            <div class="t-avatar">👤</div>
+            <div class="t-name">Lorem I. Psum</div>
+            <div class="t-role">Director, Operations</div>
+            <div class="t-ph">← Replace with real name</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="values-col reveal">
+        <div class="section-tag" style="margin-bottom:1.5rem">Our Values</div>
+        <div class="value-item">
+          <div class="v-num">01</div>
+          <div>
+            <div class="v-title">Client-First Thinking</div>
+            <div class="v-body">We always put the client first — unless the client wants something that would make us look bad, in which case we put the slide deck first.</div>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="v-num">02</div>
+          <div>
+            <div class="v-title">Evidence Over Opinion</div>
+            <div class="v-body">Our conclusions are grounded in data, unless the data is inconvenient, in which case we reframe the question until the data agrees with us.</div>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="v-num">03</div>
+          <div>
+            <div class="v-title">Radical Transparency</div>
+            <div class="v-body">We are radically transparent about everything except our day rates, our actual methodology, and the fact that this company does not exist.</div>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="v-num">04</div>
+          <div>
+            <div class="v-title">Measurable Outcomes</div>
+            <div class="v-body">We measure outcomes rigorously, then select the metrics that make those outcomes look best. This is called "framing" and it is a core consulting skill.</div>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="v-num">05</div>
+          <div>
+            <div class="v-title">Placeholder Value #5</div>
+            <div class="v-body">This value was going to be "Integrity" but that felt like a lot of pressure. Replace with something your organisation can actually commit to. <em style="color:#b87333;font-size:0.75rem">← placeholder</em></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="f-logo">Not a Real Company</div>
+      <div class="f-tag">Strategy. Synergy. Success.</div>
+    </div>
+    <ul class="f-links">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="f-right">
+      <div class="f-copy">© 2025 Not a Real Company Ltd.</div>
+      <div class="f-domain">notarealcompany.xyz — test environment</div>
+    </div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>

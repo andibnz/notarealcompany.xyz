@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Not a Real Company</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Mulish:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── SERVICE DETAIL CARDS ── */
+    .service-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+    .sd-card {
+      background: var(--white);
+      padding: 3rem;
+      transition: background 0.22s;
+    }
+    .sd-card:hover { background: var(--off); }
+    .sd-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .sd-card h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+    .sd-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .sd-card .ph { margin-top: 0; margin-bottom: 1rem; }
+    .sd-list {
+      list-style: none;
+      margin-top: 1.25rem;
+      border-top: 1px solid var(--rule);
+      padding-top: 1.25rem;
+    }
+    .sd-list li {
+      font-size: 0.83rem;
+      color: var(--text);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .sd-list li::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ── APPROACH STRIP ── */
+    .approach-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-left: 1px solid var(--rule);
+      border-top: 1px solid var(--rule);
+      margin-top: 4rem;
+    }
+    .approach-step {
+      padding: 2rem;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .step-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--rule);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .approach-step h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .approach-step p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: var(--navy);
+      padding: 4rem 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      border-top: 3px solid var(--accent);
+    }
+    .cta-band h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--white);
+      line-height: 1.2;
+      max-width: 500px;
+    }
+    .cta-band p { font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-top: 0.5rem; }
+
+    @media (max-width: 960px) {
+      .service-detail-grid { grid-template-columns: 1fr; }
+      .approach-strip { grid-template-columns: 1fr 1fr; }
+      .cta-band { flex-direction: column; align-items: flex-start; padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Not a Real Company <span class="demo">Demo</span></a>
+    <ul class="nav-links">
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="insights.html">Insights</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Contact Us</a>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-label">What We Do</div>
+    <h1>Advisory Services Built Around Your Objectives</h1>
+    <p>We offer six distinct service lines, which is enough to sound comprehensive but not so many that we seem unfocused. Each one is subtly different, and all of them involve a lot of workshops.</p>
+  </div>
+
+  <div class="section-wrap">
+    <div class="service-detail-grid">
+
+      <div class="sd-card reveal">
+        <div class="sd-num">01 — Strategy &amp; Growth</div>
+        <h2>Corporate Strategy &amp; Market Growth</h2>
+        <p>We help leadership teams make high-stakes strategic decisions with clarity and confidence — from defining competitive positioning to entering new markets and planning for long-term growth.</p>
+        <p class="ph">← Placeholder description — update with real service detail</p>
+        <ul class="sd-list">
+          <li>Corporate strategy development</li>
+          <li>Market entry &amp; expansion planning</li>
+          <li>Portfolio &amp; business unit strategy</li>
+          <li>Competitive positioning analysis</li>
+          <li>Growth scenario modelling</li>
+        </ul>
+      </div>
+
+      <div class="sd-card reveal" style="transition-delay:.08s">
+        <div class="sd-num">02 — Organisational Design</div>
+        <h2>People, Structure &amp; Operating Models</h2>
+        <p>Effective organisations are designed, not inherited. We work with leadership to reshape structures, roles, and operating models so your organisation can execute strategy at pace.</p>
+        <p class="ph">← Placeholder description — update with real service detail</p>
+        <ul class="sd-list">
+          <li>Target operating model design</li>
+          <li>Workforce planning &amp; restructuring</li>
+          <li>Change management &amp; communication</li>
+          <li>Culture &amp; capability assessments</li>
+          <li>Post-restructure stabilisation</li>
+        </ul>
+      </div>
+
+      <div class="sd-card reveal" style="transition-delay:.16s">
+        <div class="sd-num">03 — Digital Transformation</div>
+        <h2>Technology Strategy &amp; Digital Enablement</h2>
+        <p>We help organisations cut through technology noise to build pragmatic digital roadmaps — identifying where technology can create genuine value and how to execute with discipline.</p>
+        <p class="ph">← Placeholder description — update with real service detail</p>
+        <ul class="sd-list">
+          <li>Digital &amp; technology strategy</li>
+          <li>AI &amp; automation opportunity assessment</li>
+          <li>Digital operating model design</li>
+          <li>Technology vendor selection</li>
+          <li>Programme governance &amp; assurance</li>
+        </ul>
+      </div>
+
+      <div class="sd-card reveal" style="transition-delay:.24s">
+        <div class="sd-num">04 — M&amp;A Advisory</div>
+        <h2>Mergers, Acquisitions &amp; Integration</h2>
+        <p>From pre-deal diligence through to post-merger integration, we help acquirers protect and realise the strategic value that drove the transaction in the first place.</p>
+        <p class="ph">← Placeholder description — update with real service detail</p>
+        <ul class="sd-list">
+          <li>Commercial &amp; operational due diligence</li>
+          <li>Integration planning &amp; management</li>
+          <li>Synergy identification &amp; tracking</li>
+          <li>Carve-out &amp; separation planning</li>
+          <li>Day-1 &amp; 100-day planning</li>
+        </ul>
+      </div>
+
+      <div class="sd-card reveal" style="transition-delay:.32s">
+        <div class="sd-num">05 — Financial Performance</div>
+        <h2>Cost Optimisation &amp; Value Creation</h2>
+        <p>We help organisations identify and capture sustainable efficiency opportunities without compromising growth capacity — achieving better outcomes with the resources they already have.</p>
+        <p class="ph">← Placeholder description — update with real service detail</p>
+        <ul class="sd-list">
+          <li>Cost structure &amp; margin analysis</li>
+          <li>Zero-based budgeting programmes</li>
+          <li>Working capital improvement</li>
+          <li>Procurement &amp; spend analytics</li>
+          <li>Financial modelling &amp; business cases</li>
+        </ul>
+      </div>
+
+      <div class="sd-card reveal" style="transition-delay:.40s">
+        <div class="sd-num">06 — Risk &amp; Compliance</div>
+        <h2>Enterprise Risk &amp; Regulatory Readiness</h2>
+        <p>In an increasingly complex regulatory environment, we help organisations build resilient risk frameworks and prepare for scrutiny — before it arrives.</p>
+        <p class="ph">← Placeholder description — update with real service detail</p>
+        <ul class="sd-list">
+          <li>Enterprise risk framework design</li>
+          <li>Regulatory impact assessments</li>
+          <li>Governance uplift programmes</li>
+          <li>Third-party risk management</li>
+          <li>Board &amp; audit committee reporting</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- OUR APPROACH -->
+    <div style="margin-top: 5rem;">
+      <div class="section-tag">How We Work</div>
+      <h2 class="section-title">Our Approach</h2>
+      <p class="section-sub">Every engagement follows our proprietary four-step methodology, which is largely the same as every other consulting methodology but has a different name and a nicer diagram.</p>
+
+      <div class="approach-strip">
+        <div class="approach-step reveal">
+          <div class="step-num">01</div>
+          <h4>Diagnose</h4>
+          <p>We spend several weeks asking your employees questions they've already answered internally. This is called "independent analysis" and it costs significantly more than asking internally.</p>
+        </div>
+        <div class="approach-step reveal" style="transition-delay:.08s">
+          <div class="step-num">02</div>
+          <h4>Design</h4>
+          <p>We produce a large PowerPoint deck that says what needs to happen. It will have a 2×2 matrix. All consulting decks have a 2×2 matrix. This is non-negotiable.</p>
+        </div>
+        <div class="approach-step reveal" style="transition-delay:.16s">
+          <div class="step-num">03</div>
+          <h4>Deliver</h4>
+          <p>We help implement the things in the deck, some of which your team suggested in week one. We track milestones in a RAG status report where everything is amber.</p>
+        </div>
+        <div class="approach-step reveal" style="transition-delay:.24s">
+          <div class="step-num">04</div>
+          <h4>Embed</h4>
+          <p>We train your team to continue the work without us, then check in six months later to see if they need us again. They usually do. This is called "capability building."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div>
+      <h2>Ready to start a conversation?</h2>
+      <p>We're standing by. Fictitiously. Fill in the contact form and a placeholder consultant will be in touch.</p>
+    </div>
+    <a href="contact.html" class="btn-solid">Get in Touch</a>
+  </div>
+
+  <footer>
+    <div>
+      <div class="f-logo">Not a Real Company</div>
+      <div class="f-tag">Strategy. Synergy. Success.</div>
+    </div>
+    <ul class="f-links">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="f-right">
+      <div class="f-copy">© 2025 Not a Real Company Ltd.</div>
+      <div class="f-domain">notarealcompany.xyz — test environment</div>
+    </div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>

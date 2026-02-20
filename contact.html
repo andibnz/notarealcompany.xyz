@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Not a Real Company</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Mulish:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── CONTACT LAYOUT ── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    /* ── FORM ── */
+    .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .form-group label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+    .form-group label .req { color: var(--accent); }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: 'Mulish', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--text);
+      background: var(--white);
+      border: 1px solid var(--rule);
+      padding: 0.75rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--navy);
+    }
+    .form-group textarea { resize: vertical; min-height: 140px; }
+    .form-group select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7a8f' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
+
+    .form-group .field-ph { font-size: 0.63rem; color: #b87333; font-style: italic; margin-top: 0.1rem; }
+
+    .form-submit {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .form-note { font-size: 0.75rem; color: var(--muted); }
+
+    /* ── SIDEBAR INFO ── */
+    .contact-info { display: flex; flex-direction: column; gap: 2rem; }
+
+    .info-block {
+      border: 1px solid var(--rule);
+      padding: 1.75rem;
+    }
+    .info-block h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .office-item { margin-bottom: 1.25rem; }
+    .office-item:last-child { margin-bottom: 0; }
+    .office-city {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+    .office-addr { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+    .office-ph { font-size: 0.63rem; color: #b87333; font-style: italic; margin-top: 0.2rem; }
+
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.83rem;
+      color: var(--muted);
+    }
+    .contact-detail:last-child { margin-bottom: 0; }
+    .cd-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--navy);
+      min-width: 60px;
+      padding-top: 0.1rem;
+    }
+    .cd-value { line-height: 1.5; }
+    .cd-value a { color: var(--accent); text-decoration: none; }
+    .cd-value a:hover { text-decoration: underline; }
+
+    /* ── ENQUIRY TYPES ── */
+    .enquiry-types {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 3rem;
+    }
+    .eq-card {
+      background: var(--off);
+      padding: 2rem;
+      transition: background 0.2s;
+    }
+    .eq-card:hover { background: var(--white); }
+    .eq-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .eq-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+    .eq-card a {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ── MAP PLACEHOLDER ── */
+    .map-placeholder {
+      background: var(--off);
+      border: 1px solid var(--rule);
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.5rem;
+      color: var(--muted);
+    }
+    .map-placeholder .icon { font-size: 2rem; opacity: 0.4; }
+    .map-placeholder p { font-size: 0.78rem; }
+    .map-placeholder .ph { font-size: 0.65rem; color: #b87333; font-style: italic; }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      background: #f0faf4;
+      border: 1px solid #86efac;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .form-success h3 { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+    .form-success p { font-size: 0.85rem; color: var(--muted); }
+
+    @media (max-width: 960px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .enquiry-types { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Not a Real Company <span class="demo">Demo</span></a>
+    <ul class="nav-links">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="insights.html">Insights</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta active">Contact Us</a>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-label">Get in Touch</div>
+    <h1>Let's Start a Conversation</h1>
+    <p>We'd welcome the chance to speak with you. A member of our (fictional) team will respond within two business days, or never, depending on how far along the implementation is.</p>
+  </div>
+
+  <div class="section-wrap">
+    <div class="contact-layout">
+
+      <!-- FORM -->
+      <div>
+        <div class="section-tag">Send Us a Message</div>
+        <h2 class="section-title" style="margin-bottom: 2rem;">Tell Us About Your Needs</h2>
+
+        <div id="form-success" class="form-success">
+          <h3>Message Received</h3>
+          <p>Thank you for reaching out to a company that does not exist. A fictional consultant will be in touch within two fictional business days. In the meantime, please enjoy the rest of this website. <em class="ph">← wire up to real form handler before going live</em></p>
+        </div>
+
+        <form class="contact-form" id="contact-form" onsubmit="handleSubmit(event)">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name <span class="req">*</span></label>
+              <input type="text" placeholder="Jane" required />
+              <span class="field-ph">← placeholder field</span>
+            </div>
+            <div class="form-group">
+              <label>Last Name <span class="req">*</span></label>
+              <input type="text" placeholder="Smith" required />
+              <span class="field-ph">← placeholder field</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Work Email <span class="req">*</span></label>
+              <input type="email" placeholder="jane.smith@company.com" required />
+              <span class="field-ph">← placeholder field</span>
+            </div>
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="tel" placeholder="+64 9 000 0000" />
+              <span class="field-ph">← placeholder field</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Organisation <span class="req">*</span></label>
+              <input type="text" placeholder="Your Company Ltd" required />
+              <span class="field-ph">← placeholder field</span>
+            </div>
+            <div class="form-group">
+              <label>Role / Title</label>
+              <input type="text" placeholder="Chief Executive" />
+              <span class="field-ph">← placeholder field</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Area of Interest</label>
+            <select>
+              <option value="" disabled selected>Select a service area</option>
+              <option>Strategy &amp; Growth</option>
+              <option>Organisational Design</option>
+              <option>Digital Transformation</option>
+              <option>M&amp;A Advisory</option>
+              <option>Financial Performance</option>
+              <option>Risk &amp; Compliance</option>
+              <option>General Enquiry</option>
+            </select>
+            <span class="field-ph">← placeholder field</span>
+          </div>
+
+          <div class="form-group">
+            <label>How Can We Help? <span class="req">*</span></label>
+            <textarea placeholder="Tell us briefly about your situation and what you're looking to achieve..." required></textarea>
+            <span class="field-ph">← placeholder field</span>
+          </div>
+
+          <div class="form-group">
+            <label>How Did You Hear About Us?</label>
+            <select>
+              <option value="" disabled selected>Select an option</option>
+              <option>Client referral</option>
+              <option>LinkedIn</option>
+              <option>Conference or event</option>
+              <option>Web search</option>
+              <option>Our insights / publications</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn-solid">Send Message</button>
+            <span class="form-note">← Non-functional. Submitting this goes nowhere. Which, fittingly, is where we are.</span>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="contact-info">
+
+        <div class="info-block">
+          <h4>Direct Contact</h4>
+          <div class="contact-detail">
+            <div class="cd-label">Email</div>
+            <div class="cd-value"><a href="mailto:hello@notarealcompany.xyz">hello@notarealcompany.xyz</a><div class="ph" style="font-size:0.63rem">← placeholder email</div></div>
+          </div>
+          <div class="contact-detail">
+            <div class="cd-label">Phone</div>
+            <div class="cd-value">+64 9 000 0000<div class="ph" style="font-size:0.63rem">← placeholder number</div></div>
+          </div>
+          <div class="contact-detail">
+            <div class="cd-label">Hours</div>
+            <div class="cd-value">Mon – Fri, 8:30am – 5:30pm NZST</div>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <h4>Our Offices</h4>
+          <div class="office-item">
+            <div class="office-city">Auckland (HQ)</div>
+            <div class="office-addr">Level 12, 1 Placeholder Street<br/>Auckland CBD, 1010<br/>New Zealand</div>
+            <div class="office-ph">← placeholder address</div>
+          </div>
+          <div class="office-item">
+            <div class="office-city">Sydney</div>
+            <div class="office-addr">Level 8, 123 Sample Road<br/>Sydney NSW 2000<br/>Australia</div>
+            <div class="office-ph">← placeholder address</div>
+          </div>
+          <div class="office-item">
+            <div class="office-city">London</div>
+            <div class="office-addr">4th Floor, 99 Example Lane<br/>London EC2A 0XX<br/>United Kingdom</div>
+            <div class="office-ph">← placeholder address</div>
+          </div>
+        </div>
+
+        <div class="map-placeholder">
+          <div class="icon">📍</div>
+          <p>Map placeholder</p>
+          <div class="ph">← embed Google Maps or similar</div>
+        </div>
+
+        <div class="info-block">
+          <h4>Follow Us</h4>
+          <div class="contact-detail">
+            <div class="cd-label">LinkedIn</div>
+            <div class="cd-value"><a href="#">linkedin.com/company/notarealcompany</a><div class="ph" style="font-size:0.63rem">← placeholder</div></div>
+          </div>
+          <div class="contact-detail">
+            <div class="cd-label">Twitter/X</div>
+            <div class="cd-value"><a href="#">@notarealco</a><div class="ph" style="font-size:0.63rem">← placeholder</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ENQUIRY TYPES -->
+    <div style="margin-top: 5rem;">
+      <div class="section-tag">Not Sure Where to Start?</div>
+      <h2 class="section-title" style="margin-bottom:2rem">Types of Enquiries We Handle</h2>
+      <div class="enquiry-types">
+        <div class="eq-card reveal">
+          <h4>New Client Enquiries</h4>
+          <p>If you're considering engaging a consulting firm that technically doesn't exist, we're the right choice. We're happy to have an exploratory conversation with absolutely no obligation, because obligation requires legal standing.</p>
+          <a href="#">Start a conversation →</a>
+        </div>
+        <div class="eq-card reveal" style="transition-delay:.08s">
+          <h4>Existing Client Support</h4>
+          <p>If you are an existing client, something has gone seriously wrong and we would like to know how. Please reach out to your engagement manager, who is also a placeholder name.</p>
+          <a href="#">Contact your team →</a>
+        </div>
+        <div class="eq-card reveal" style="transition-delay:.16s">
+          <h4>Media &amp; Press</h4>
+          <p>We welcome press enquiries and are available for comment on any topic within our area of fictional expertise. Please note that our spokespeople cannot be photographed.</p>
+          <a href="#">Press enquiries →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div>
+      <div class="f-logo">Not a Real Company</div>
+      <div class="f-tag">Strategy. Synergy. Success.</div>
+    </div>
+    <ul class="f-links">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="f-right">
+      <div class="f-copy">© 2025 Not a Real Company Ltd.</div>
+      <div class="f-domain">notarealcompany.xyz — test environment</div>
+    </div>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    }
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>

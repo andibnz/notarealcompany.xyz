@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Not a Real Company</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Mulish:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── STORY SECTION ── */
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .story-body p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 1.1rem;
+    }
+    .story-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+    .story-stat {
+      background: var(--off);
+      padding: 2rem;
+    }
+    .story-stat .n {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 2.8rem;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .story-stat .n sup { font-size: 1.1rem; color: var(--accent); }
+    .story-stat .l { font-size: 0.8rem; color: var(--muted); margin-top: 0.35rem; }
+    .story-stat .p { font-size: 0.65rem; color: var(--accent); font-style: italic; margin-top: 0.2rem; opacity: 0.8; }
+
+    /* ── TIMELINE ── */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      border-left: 2px solid var(--rule);
+      margin-top: 1rem;
+    }
+    .tl-item {
+      position: relative;
+      padding: 0 0 2.5rem 2rem;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -2.45rem;
+      top: 0.3rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .tl-year {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .tl-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--navy);
+      margin-bottom: 0.3rem;
+    }
+    .tl-body { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── VALUES GRID ── */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+    .val-card {
+      background: var(--white);
+      padding: 2.5rem;
+      transition: background 0.2s;
+    }
+    .val-card:hover { background: var(--off); }
+    .val-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .val-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+    }
+    .val-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.75; }
+
+    /* ── TEAM SECTION ── */
+    .team-full-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+    .tf-card {
+      background: var(--white);
+      padding: 2rem;
+      transition: background 0.2s;
+    }
+    .tf-card:hover { background: var(--off); }
+    .tf-avatar {
+      width: 56px;
+      height: 56px;
+      background: var(--off);
+      border: 1px solid var(--rule);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .tf-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--navy);
+    }
+    .tf-role { font-size: 0.78rem; color: var(--accent); font-weight: 600; margin-top: 0.2rem; }
+    .tf-bio { font-size: 0.8rem; color: var(--muted); line-height: 1.65; margin-top: 0.6rem; }
+    .tf-ph { font-size: 0.63rem; color: #b87333; font-style: italic; margin-top: 0.35rem; }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: var(--navy);
+      padding: 4rem 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      border-top: 3px solid var(--accent);
+    }
+    .cta-band h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--white);
+      line-height: 1.2;
+    }
+    .cta-band p { font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-top: 0.5rem; }
+
+    @media (max-width: 960px) {
+      .story-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .story-stats { grid-template-columns: 1fr 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      .team-full-grid { grid-template-columns: 1fr 1fr; }
+      .cta-band { flex-direction: column; align-items: flex-start; padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Not a Real Company <span class="demo">Demo</span></a>
+    <ul class="nav-links">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="insights.html">Insights</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Contact Us</a>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-label">Who We Are</div>
+    <h1>Built on Expertise. Driven by Outcomes.</h1>
+    <p>Not a Real Company was founded in 2007 with a simple premise: that organisations deserve a consulting partner willing to admit, in small italic text, that it doesn't exist.</p>
+  </div>
+
+  <!-- OUR STORY -->
+  <div class="section-wrap">
+    <div class="story-grid">
+      <div class="story-body">
+        <div class="section-tag">Our Story</div>
+        <h2 class="section-title">18 Years of Client-First Consulting</h2>
+        <p>Founded in 2007 by a group of former partners from firms we're legally unable to name (because those firms also don't exist), Not a Real Company was built on the belief that the best consulting combines deep analytical rigour with genuine client partnership — rather than just emailing a slide deck and invoicing for "strategic facilitation."</p>
+        <p>We started as a boutique strategy practice with four consultants and zero clients, which is technically still the case today. Despite this, we have grown to a team of over 120 professionals across four continents, all of whom are also fictional.</p>
+        <p>Our growth has been driven entirely by client referrals, which is remarkable given that we have no clients. We believe this is a record.</p>
+        <p class="ph" style="font-size:0.78rem">← Placeholder company history — replace with your real story, which we sincerely hope is more grounded in reality</p>
+
+        <div style="margin-top: 2.5rem;">
+          <div class="section-tag">Our History</div>
+          <div class="timeline" style="margin-top: 1.5rem;">
+            <div class="tl-item">
+              <div class="tl-year">2007</div>
+              <div class="tl-title">Founded in Auckland</div>
+              <div class="tl-body">Not a Real Company established by four founding partners with impressive but unverifiable credentials. A bottle of champagne was opened. No one was there. <span class="ph">← placeholder</span></div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2011</div>
+              <div class="tl-title">First International Office</div>
+              <div class="tl-body">Expanded to Sydney, primarily because Sydney sounds good in a credentials document and the flight is short. <span class="ph">← placeholder</span></div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2015</div>
+              <div class="tl-title">Digital Practice Launched</div>
+              <div class="tl-body">Established a dedicated digital transformation practice after noticing that "digital transformation" appeared in 94% of client briefs and we had no idea what it meant. We do now. Mostly. <span class="ph">← placeholder</span></div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2019</div>
+              <div class="tl-title">EMEA Expansion</div>
+              <div class="tl-body">Opened London and Amsterdam offices. London because of prestige, Amsterdam because one of the founding partners enjoys cycling. <span class="ph">← placeholder</span></div>
+            </div>
+            <div class="tl-item" style="padding-bottom:0">
+              <div class="tl-year">2025</div>
+              <div class="tl-title">120+ Professionals Globally</div>
+              <div class="tl-body">Still growing, still fictitious, still deeply committed to the bit. <span class="ph">← placeholder</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="story-stats reveal">
+          <div class="story-stat">
+            <div class="n">500<sup>+</sup></div>
+            <div class="l">Engagements Completed</div>
+            <div class="p">← suspiciously round number</div>
+          </div>
+          <div class="story-stat">
+            <div class="n">120<sup>+</sup></div>
+            <div class="l">Professionals Globally</div>
+            <div class="p">← all fictional, all very committed</div>
+          </div>
+          <div class="story-stat">
+            <div class="n">18</div>
+            <div class="l">Years in Operation</div>
+            <div class="p">← fictitious but a very credible number</div>
+          </div>
+          <div class="story-stat">
+            <div class="n">4</div>
+            <div class="l">Global Offices</div>
+            <div class="p">← none of which have a real address</div>
+          </div>
+        </div>
+
+        <!-- Clients bar inline -->
+        <div style="margin-top: 2px; background: var(--rule); padding: 1px;">
+          <div style="background: var(--off); padding: 1.75rem 2rem;">
+            <div style="font-family:'Syne',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); margin-bottom:1.25rem;">Clients We've Served</div>
+            <div style="display:flex; flex-wrap:wrap; gap:1.25rem 2rem;">
+              <div class="client-name" style="font-size:0.8rem">Globecorp<span>not real</span></div>
+              <div class="client-name" style="font-size:0.8rem">Nexigen<span>not real</span></div>
+              <div class="client-name" style="font-size:0.8rem">Stratolink<span>not real</span></div>
+              <div class="client-name" style="font-size:0.8rem">Veridian Co.<span>not real</span></div>
+              <div class="client-name" style="font-size:0.8rem">Orrion Group<span>not real</span></div>
+              <div class="client-name" style="font-size:0.8rem">Axient Ltd<span>not real</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUES -->
+  <div class="section-wrap bg-off">
+    <div class="section-tag">What We Stand For</div>
+    <h2 class="section-title">Our Values</h2>
+    <p class="section-sub" style="margin-bottom: 3rem;">These aren't aspirational statements on a wall. They're the principles that govern how we engage with clients, conduct our work, and hold ourselves accountable — even though none of that is happening because we don't exist.</p>
+    <div class="values-grid">
+      <div class="val-card reveal">
+        <div class="val-num">01</div>
+        <h3>Client-First Thinking</h3>
+        <p>Every recommendation is grounded in your specific context and objectives — not a pre-packaged framework. Except for the 2×2 matrix. That one's non-negotiable.</p>
+      </div>
+      <div class="val-card reveal" style="transition-delay:.08s">
+        <div class="val-num">02</div>
+        <h3>Evidence Over Opinion</h3>
+        <p>We follow the data, even when it points somewhere uncomfortable. If the data is ambiguous, we commission more data. If that's also ambiguous, we write a thinkpiece about uncertainty.</p>
+      </div>
+      <div class="val-card reveal" style="transition-delay:.16s">
+        <div class="val-num">03</div>
+        <h3>Radical Transparency</h3>
+        <p>We tell clients what they need to hear. For example: this company is not real. Its employees are placeholder names. Its offices are fictional. That's as transparent as it gets.</p>
+      </div>
+      <div class="val-card reveal" style="transition-delay:.24s">
+        <div class="val-num">04</div>
+        <h3>Measurable Outcomes</h3>
+        <p>We scope every engagement with clear success criteria, then carefully choose which criteria to put in the case study depending on which ones went well.</p>
+      </div>
+      <div class="val-card reveal" style="transition-delay:.32s">
+        <div class="val-num">05</div>
+        <h3>Long-Term Partnership</h3>
+        <p>Our best client relationships span years, not projects. We attribute this to trust, mutual respect, and the fact that switching consulting firms is genuinely very annoying.</p>
+      </div>
+      <div class="val-card reveal" style="transition-delay:.40s">
+        <div class="val-num">06</div>
+        <h3>Placeholder Value</h3>
+        <p>We ran out of real values at five but six feels more complete. Replace this with something your organisation can actually commit to without wincing. <em class="ph">← placeholder</em></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEAM -->
+  <div class="section-wrap">
+    <div class="section-tag">Our People</div>
+    <h2 class="section-title">The Team</h2>
+    <p class="section-sub" style="margin-bottom: 3rem;">Our consultants come from strategy, operations, finance, and technology backgrounds. What they share is a commitment to rigorous thinking, genuine client partnership, and not existing in any meaningful sense.</p>
+
+    <div class="team-full-grid">
+      <div class="tf-card reveal">
+        <div class="tf-avatar">👤</div>
+        <div class="tf-name">Jane Placeholder</div>
+        <div class="tf-role">Managing Partner</div>
+        <div class="tf-bio">20 years in management consulting. Known for her decisive leadership, her ability to synthesise complex information, and her name, which is a placeholder. <em class="ph">← placeholder bio</em></div>
+        <div class="tf-ph">← Replace with real name &amp; bio</div>
+      </div>
+      <div class="tf-card reveal" style="transition-delay:.07s">
+        <div class="tf-avatar">👤</div>
+        <div class="tf-name">John Testington</div>
+        <div class="tf-role">Head of Strategy</div>
+        <div class="tf-bio">Specialises in corporate strategy and market entry. John is widely respected in the fictional consulting community and has never lost a hypothetical pitch. <em class="ph">← placeholder bio</em></div>
+        <div class="tf-ph">← Replace with real name &amp; bio</div>
+      </div>
+      <div class="tf-card reveal" style="transition-delay:.14s">
+        <div class="tf-avatar">👤</div>
+        <div class="tf-name">A. Sample Person</div>
+        <div class="tf-role">Principal, Digital</div>
+        <div class="tf-bio">Leads our digital transformation practice. Their first initial stands for something, but we've not decided what yet. Extremely good at roadmaps. <em class="ph">← placeholder bio</em></div>
+        <div class="tf-ph">← Replace with real name &amp; bio</div>
+      </div>
+      <div class="tf-card reveal" style="transition-delay:.21s">
+        <div class="tf-avatar">👤</div>
+        <div class="tf-name">Lorem I. Psum</div>
+        <div class="tf-role">Director, Operations</div>
+        <div class="tf-bio">Lorem joined us from a long career in placeholder text. She has led transformations across four continents, none of which she can point to on a map. <em class="ph">← placeholder bio</em></div>
+        <div class="tf-ph">← Replace with real name &amp; bio</div>
+      </div>
+      <div class="tf-card reveal" style="transition-delay:.28s">
+        <div class="tf-avatar">👤</div>
+        <div class="tf-name">Placeholder McName</div>
+        <div class="tf-role">Senior Manager, M&amp;A</div>
+        <div class="tf-bio">Focused on transaction support and post-merger integration. Has supported over 30 transactions, all of which were also fictional. Excellent at due diligence. <em class="ph">← placeholder bio</em></div>
+        <div class="tf-ph">← Replace with real name &amp; bio</div>
+      </div>
+      <div class="tf-card reveal" style="transition-delay:.35s">
+        <div class="tf-avatar">👤</div>
+        <div class="tf-name">Sample Q. Person</div>
+        <div class="tf-role">Manager, Risk &amp; Compliance</div>
+        <div class="tf-bio">Formerly at a regulator whose name is also not real. Brings deep expertise in governance frameworks and a preternatural ability to stay calm during board presentations. <em class="ph">← placeholder bio</em></div>
+        <div class="tf-ph">← Replace with real name &amp; bio</div>
+      </div>
+      <div class="tf-card reveal" style="transition-delay:.42s">
+        <div class="tf-avatar">👤</div>
+        <div class="tf-name">Test B. User</div>
+        <div class="tf-role">Senior Consultant</div>
+        <div class="tf-bio">A generalist with strong quantitative skills. Test joined after several years in industry, where they worked at a company that also does not exist. Very good at Excel. <em class="ph">← placeholder bio</em></div>
+        <div class="tf-ph">← Replace with real name &amp; bio</div>
+      </div>
+      <div class="tf-card reveal" style="transition-delay:.49s">
+        <div class="tf-avatar">👤</div>
+        <div class="tf-name">Dummy N. Data</div>
+        <div class="tf-role">Consultant</div>
+        <div class="tf-bio">The most junior member of our fictional team. Dummy joined straight from a business school and brings enormous enthusiasm, a colour-coded planner, and no billable hours yet. <em class="ph">← placeholder bio</em></div>
+        <div class="tf-ph">← Replace with real name &amp; bio</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div>
+      <h2>Interested in working with us?</h2>
+      <p>We'd love to hear from you. A fictional consultant will respond within two fictional business days.</p>
+    </div>
+    <a href="contact.html" class="btn-solid">Get in Touch</a>
+  </div>
+
+  <footer>
+    <div>
+      <div class="f-logo">Not a Real Company</div>
+      <div class="f-tag">Strategy. Synergy. Success.</div>
+    </div>
+    <ul class="f-links">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="f-right">
+      <div class="f-copy">© 2025 Not a Real Company Ltd.</div>
+      <div class="f-domain">notarealcompany.xyz — test environment</div>
+    </div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insights — Not a Real Company</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Mulish:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      padding: 1.5rem 5rem;
+      border-bottom: 1px solid var(--rule);
+      background: var(--off);
+      flex-wrap: wrap;
+    }
+    .filter-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-right: 0.5rem;
+    }
+    .filter-btn {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--white);
+      border: 1px solid var(--rule);
+      padding: 0.35rem 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+
+    /* ── FEATURED ARTICLE ── */
+    .featured-article {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .fa-image {
+      background: var(--navy);
+      min-height: 340px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 2rem;
+    }
+    .fa-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 20px,
+        rgba(255,255,255,0.015) 20px,
+        rgba(255,255,255,0.015) 21px
+      );
+    }
+    .fa-image-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.25rem 0.65rem;
+      position: relative;
+      z-index: 1;
+    }
+    .fa-content {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .fa-meta {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+    .fa-meta span { color: var(--accent); font-weight: 600; }
+    .fa-content h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+    .fa-content p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+    .read-more {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.1rem;
+      display: inline-block;
+      transition: color 0.2s;
+    }
+    .read-more:hover { color: var(--accent); }
+
+    /* ── ARTICLE GRID ── */
+    .articles-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .article-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid var(--rule);
+    }
+    .article-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+    .article-card:hover .ac-title { color: var(--accent); }
+    .ac-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--rule);
+      padding-top: 0.2rem;
+      min-width: 2rem;
+    }
+    .ac-category {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .ac-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: 0.4rem;
+      transition: color 0.2s;
+    }
+    .ac-excerpt { font-size: 0.83rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.6rem; }
+    .ac-meta { font-size: 0.68rem; color: var(--muted); }
+    .ac-ph { font-size: 0.63rem; color: #b87333; font-style: italic; margin-top: 0.3rem; }
+
+    /* ── SIDEBAR ── */
+    .sidebar {}
+    .sidebar-block {
+      border: 1px solid var(--rule);
+      margin-bottom: 2rem;
+    }
+    .sb-head {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--navy);
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--rule);
+      background: var(--off);
+    }
+    .sb-list { padding: 0.5rem 0; }
+    .sb-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.65rem 1.5rem;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.82rem;
+      color: var(--text);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.18s;
+    }
+    .sb-item:last-child { border-bottom: none; }
+    .sb-item:hover { background: var(--off); }
+    .sb-item::before { content: '→'; color: var(--accent); font-size: 0.75rem; }
+    .sb-item .sb-count { margin-left: auto; font-size: 0.7rem; color: var(--muted); font-weight: 600; }
+
+    .newsletter-box {
+      border: 1px solid var(--rule);
+      padding: 1.75rem;
+      background: var(--navy);
+    }
+    .newsletter-box h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .newsletter-box p { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 1.25rem; line-height: 1.6; }
+    .newsletter-box input {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.07);
+      color: var(--white);
+      font-family: 'Mulish', sans-serif;
+      font-size: 0.83rem;
+      margin-bottom: 0.75rem;
+      outline: none;
+    }
+    .newsletter-box input::placeholder { color: rgba(255,255,255,0.3); }
+    .newsletter-box button {
+      width: 100%;
+    }
+    .nb-ph { font-size: 0.63rem; color: var(--accent); font-style: italic; margin-top: 0.5rem; opacity: 0.8; }
+
+    @media (max-width: 960px) {
+      .filter-bar { padding: 1rem 1.5rem; }
+      .featured-article { grid-template-columns: 1fr; }
+      .fa-image { min-height: 180px; }
+      .articles-layout { grid-template-columns: 1fr; gap: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Not a Real Company <span class="demo">Demo</span></a>
+    <ul class="nav-links">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="insights.html" class="active">Insights</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Contact Us</a>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-label">Insights &amp; Perspectives</div>
+    <h1>Thinking From Our Practice</h1>
+    <p>Perspectives, research, and hot takes from our team of fictional consultants on the strategic issues facing organisations today. All opinions are placeholder opinions.</p>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active">All</button>
+    <button class="filter-btn">Strategy</button>
+    <button class="filter-btn">Digital</button>
+    <button class="filter-btn">M&amp;A</button>
+    <button class="filter-btn">Operations</button>
+    <button class="filter-btn">Leadership</button>
+  </div>
+
+  <!-- FEATURED ARTICLE -->
+  <div class="featured-article">
+    <div class="fa-image">
+      <div class="fa-image-label">Featured Insight</div>
+    </div>
+    <div class="fa-content">
+      <div class="fa-meta"><span>Strategy</span> &nbsp;·&nbsp; January 2025 &nbsp;·&nbsp; 12 min read</div>
+      <h2>Why Most Corporate Strategies Fail in the First Year of Execution</h2>
+      <p>The gap between strategy and execution is where most value is lost — and, coincidentally, where most consulting engagements begin. Our research across 200 fictional engagements reveals the five organisational factors that consistently predict whether a strategy will land.</p>
+      <p class="ph" style="font-size:0.75rem">← Placeholder article — this insight does not exist and neither do the 200 engagements</p>
+      <a href="#" class="read-more">Read the full insight</a>
+    </div>
+  </div>
+
+  <!-- ARTICLES + SIDEBAR -->
+  <div class="section-wrap">
+    <div class="articles-layout">
+
+      <div>
+        <div class="section-tag">Latest Insights</div>
+        <div class="article-grid">
+
+          <a href="#" class="article-card reveal">
+            <div class="ac-num">01</div>
+            <div>
+              <div class="ac-category">Digital Transformation</div>
+              <div class="ac-title">AI Adoption in Professional Services: What's Working and What Isn't</div>
+              <div class="ac-excerpt">Two years into widespread AI experimentation, the firms seeing real productivity gains share a common set of decisions. We interviewed zero of them, but we have strong views regardless.</div>
+              <div class="ac-meta">February 2025 &nbsp;·&nbsp; 8 min read</div>
+              <div class="ac-ph">← Placeholder article</div>
+            </div>
+          </a>
+
+          <a href="#" class="article-card reveal" style="transition-delay:.07s">
+            <div class="ac-num">02</div>
+            <div>
+              <div class="ac-category">M&amp;A Advisory</div>
+              <div class="ac-title">The 100-Day Trap: Why Integration Planning Needs to Start at Due Diligence</div>
+              <div class="ac-excerpt">Most acquirers treat integration as a post-close problem. The evidence suggests this is costly — though in our case, "the evidence" is a 2×2 matrix we drew on a whiteboard in 2019.</div>
+              <div class="ac-meta">January 2025 &nbsp;·&nbsp; 10 min read</div>
+              <div class="ac-ph">← Placeholder article</div>
+            </div>
+          </a>
+
+          <a href="#" class="article-card reveal" style="transition-delay:.14s">
+            <div class="ac-num">03</div>
+            <div>
+              <div class="ac-category">Organisational Design</div>
+              <div class="ac-title">Flattening Hierarchies Is Not the Same as Becoming Agile</div>
+              <div class="ac-excerpt">Removing middle management and calling it agility is a bit like removing road signs and calling it freedom. A nuanced take that several fictional clients have found very useful.</div>
+              <div class="ac-meta">December 2024 &nbsp;·&nbsp; 7 min read</div>
+              <div class="ac-ph">← Placeholder article</div>
+            </div>
+          </a>
+
+          <a href="#" class="article-card reveal" style="transition-delay:.21s">
+            <div class="ac-num">04</div>
+            <div>
+              <div class="ac-category">Financial Performance</div>
+              <div class="ac-title">Cost Reduction Without Cutting Growth: A Framework for Sustainable Efficiency</div>
+              <div class="ac-excerpt">Spoiler: the framework involves a lot of careful analysis, some uncomfortable conversations, and at least one spreadsheet that will be opened once and then never again.</div>
+              <div class="ac-meta">November 2024 &nbsp;·&nbsp; 9 min read</div>
+              <div class="ac-ph">← Placeholder article</div>
+            </div>
+          </a>
+
+          <a href="#" class="article-card reveal" style="transition-delay:.28s">
+            <div class="ac-num">05</div>
+            <div>
+              <div class="ac-category">Strategy</div>
+              <div class="ac-title">Market Entry in 2025: Why the Old Frameworks Still Apply (and Where They Don't)</div>
+              <div class="ac-excerpt">Porter's Five Forces is still useful. We know this because we have been citing it since 2007 and no one has asked us to stop. Here's our nuanced view on when to use it.</div>
+              <div class="ac-meta">October 2024 &nbsp;·&nbsp; 11 min read</div>
+              <div class="ac-ph">← Placeholder article</div>
+            </div>
+          </a>
+
+          <a href="#" class="article-card reveal" style="transition-delay:.35s">
+            <div class="ac-num">06</div>
+            <div>
+              <div class="ac-category">Leadership</div>
+              <div class="ac-title">The CEO's Role in Strategy Execution: Sponsor, Owner, or Blocker?</div>
+              <div class="ac-excerpt">More often than anyone will say out loud: blocker. This article explores that dynamic with appropriate diplomacy, given that CEOs are the ones who hire consultants.</div>
+              <div class="ac-meta">September 2024 &nbsp;·&nbsp; 6 min read</div>
+              <div class="ac-ph">← Placeholder article</div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <div class="sidebar-block">
+          <div class="sb-head">Topics</div>
+          <div class="sb-list">
+            <a href="#" class="sb-item">Strategy &amp; Growth <span class="sb-count">14</span></a>
+            <a href="#" class="sb-item">Digital Transformation <span class="sb-count">11</span></a>
+            <a href="#" class="sb-item">M&amp;A Advisory <span class="sb-count">9</span></a>
+            <a href="#" class="sb-item">Organisational Design <span class="sb-count">8</span></a>
+            <a href="#" class="sb-item">Financial Performance <span class="sb-count">7</span></a>
+            <a href="#" class="sb-item">Risk &amp; Compliance <span class="sb-count">5</span></a>
+            <a href="#" class="sb-item">Leadership <span class="sb-count">6</span></a>
+          </div>
+        </div>
+
+        <div class="newsletter-box">
+          <h4>Subscribe to Our Insights</h4>
+          <p>Receive our latest fictional thinking directly to your inbox. We publish roughly whenever we remember to.</p>
+          <input type="email" placeholder="your@email.com" />
+          <button class="btn-solid">Subscribe</button>
+          <div class="nb-ph">← Placeholder — wire up to real email service</div>
+        </div>
+
+        <div class="sidebar-block">
+          <div class="sb-head">Popular This Month</div>
+          <div class="sb-list">
+            <a href="#" class="sb-item">Why Strategies Fail in Year One</a>
+            <a href="#" class="sb-item">AI Adoption in Professional Services</a>
+            <a href="#" class="sb-item">The 100-Day Trap</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div>
+      <div class="f-logo">Not a Real Company</div>
+      <div class="f-tag">Strategy. Synergy. Success.</div>
+    </div>
+    <ul class="f-links">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="f-right">
+      <div class="f-copy">© 2025 Not a Real Company Ltd.</div>
+      <div class="f-domain">notarealcompany.xyz — test environment</div>
+    </div>
+  </footer>
+
+  <script>
+    // Filter buttons (UI only — no real filtering)
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
